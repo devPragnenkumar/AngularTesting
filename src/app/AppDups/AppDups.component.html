@@ -1,7 +1,7 @@
-<div id="title">{{title}}</div>
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+<div data-testid="title">{{title}}</div>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" data-testid="form">
   <div>
-    <input type="text" formControlName="userName" id="userName">
+    <input type="text" formControlName="userName" data-testid="userName">
     <span *ngIf="getFormGroup().userName.hasError('required')">
       {{"User Name is Required"}}
     </span>
@@ -11,11 +11,11 @@
   </div>
 
   <div>
-    <select formControlName="gender" id="gender">
+    <select formControlName="gender" data-testid="gender">
       <option value="male">Male</option>
       <option value="female">Female</option>
     </select>
   </div>
 
-  <button id="submitButton" type="submit" [disabled]="formGroup.status === 'INVALID'">Submit</button>
+  <button data-testid="submitButton" type="submit" [disabled]="formGroup.status === 'INVALID'">Submit</button>
 </form>

@@ -1,4 +1,3 @@
-import { Component } from '@angular/core';
 import {
   FormControl,
   FormControlName,
@@ -8,15 +7,16 @@ import {
 import { RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-AppDups',
+  templateUrl: './AppDups.component.html',
+  styleUrls: ['./AppDups.component.scss'],
   standalone: true,
   imports: [RouterOutlet, ReactiveFormsModule, CommonModule],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppDupComponent {
   title = 'AngularTesting';
   formGroup = new FormGroup({
     userName: new FormControl('', [
