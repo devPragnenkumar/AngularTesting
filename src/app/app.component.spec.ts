@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { ValueServiceService } from './services/value-service.service';
 
 const formDummyValues = {
   userName: 'John doe',
@@ -115,9 +116,21 @@ const formTesting = () => {
   let submitButton: HTMLButtonElement;
 
   beforeEach(async () => {
+    const valueService = new ValueServiceService();
+    const valueServiceMock = {
+      getValue: () => 1,
+    };
     await TestBed.configureTestingModule({
       imports: [AppComponent],
+      providers: [
+        {
+          provide: ValueServiceService,
+          useValue: valueServiceMock, // uses the mock
+        },
+      ],
     }).compileComponents();
+
+    expect(valueService.getValue()).toBe(1);
 
     fixture = TestBed.createComponent(AppComponent);
     componentInstance = fixture.componentInstance;
@@ -153,6 +166,7 @@ const formTesting = () => {
 // Test Description for testing using Angular testing library
 describe('AppComponent', () => {
   // Testing Using Angular Native Support
+
   describe('AppComponent SetUp', appComponentSetUp);
   describe('Testing UserName Field', userNameFieldTesting);
   describe('Testing Gender Field', genderFieldTesting);

@@ -8,6 +8,7 @@ import {
 import { RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { ValueServiceService } from './services/value-service.service';
 
 @Component({
   selector: 'app-root',
@@ -26,11 +27,14 @@ export class AppComponent {
     gender: new FormControl('', [Validators.required]),
   });
 
+  constructor(private getValueService: ValueServiceService) {}
+
   onSubmit = () => {
     console.log(this.formGroup.value);
   };
 
   getFormGroup = () => {
+    const temp = this.getValueService.getValue();
     return this.formGroup.controls;
   };
 }
